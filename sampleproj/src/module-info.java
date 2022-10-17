@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author lvukkum
+ *
+ */
+module sampleproj {
+}
