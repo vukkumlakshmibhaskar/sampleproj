@@ -1,0 +1,581 @@
+Program-1: To print Hello World on my Screen.
+FileName: FirstProgram.java
+class FirstProgram
+{
+   public static void main(String ars[])
+   {
+     System.out.println("Hello World!);
+   }
+}
+
+output:
+
+-----------------------------------------------------------------------------
+Program-2: Finding the Simple Interest
+ 
+import java.util.*;
+class SimpleInterest
+{
+  public static void main(String args[])
+  {
+       //Object Creation
+       Scanner sc=new Scanner(System.in);
+
+       int P=sc.nextInt();
+       int T=sc.nextInt();
+       int R=sc.nextInt();
+       double I;
+       I=(P*T*R)/100;
+       System.out.println("Principle Amount: "+P);
+       System.out.println("Time: "+T);
+       System.out.println("Rate of Interest: "+R);
+       System.out.println("Interest = "+I);
+   }   
+}
+
+output:
+SimpleInterest
+100000
+12
+2
+Principle Amount: 100000
+Time: 12
+Rate of Interest: 2
+Interest = 24000.0
+
+
+----------------------------------------------------------------------------
+3.write a program in java that calculates the Average of two numbers.
+
+import java.util.Scanner;
+
+public class AverageCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+        double average = (num1 + num2) / 2;
+        System.out.println("The average of " + num1 + " and " + num2 + " is: " + average);
+        scanner.close();
+    }
+}
+
+output:
+Enter the first number: 25
+Enter the second number: 11.55
+The average of 25.0 and 11.55 is: 18.275
+----------------------------------------------------------------------------------------
+4.write a program in java that calculate the area of the triangle.
+
+import java.util.Scanner;
+
+public class TriangleAreaCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the base of the triangle: ");
+        double b= sc.nextDouble();
+  
+        System.out.print("Enter the height of the triangle: ");
+        double h = sc.nextDouble();
+        double area = (b * h) / 2;
+        System.out.println("The area of the triangle with base " + b + " and height " + h + " is: " + area);
+        sc.close();
+    }
+}
+
+
+output:
+
+Enter the base of the triangle: 20
+Enter the height of the triangle: 10
+The area of the triangle with base 20.0 and height 10.0 is: 100.0
+
+---------------------------------------------------------------------------------------
+
+
+1) The Fibonacci sequence is defined by the following rule. The first 2 values
+   in the sequence are 1, 1. Every subsequent value is the sum of the 2 values
+   preceding it. Write a Java Program that uses both recursive and non
+   recursive functions to print the nth value of the Fibonacci sequence.
+
+non recursivee:
+
+import java.util.*;
+class fibonacci {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n, a = 1, b = 1, c, count = 3;
+        n = sc.nextInt();
+        c = a + b;
+
+        if(n == 1) {
+            System.out.println("1");
+        }
+        else if (n == 2) {
+            System.out.println("1");
+        }
+        else {
+            while(count < n) {
+                a = b;
+                b = c;
+                c = a + b;
+                count++;
+            }
+            System.out.println(c);
+        }
+        sc.close();
+    }
+}
+
+output:
+9
+Fibonacci of 9 term:34
+
+using recursion:
+
+import java.util.*; 
+public class Fibonacci {
+    public static int fibonacci(int n) {
+        if (n == 0) {
+            return 0; 
+        } else if (n == 1) {
+            return 1; 
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2); 
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        
+        int n = sc.nextInt(); 
+
+        System.out.println("Fibonacci of " + n + " term:"+fibonacci(n));
+        
+    }
+
+    
+}
+
+output:
+9
+Fibonacci of 9 term:34
+
+
+----------------------------------------------------
+2)Write a Java Program that prompts the user for an integer and then prints
+   out all the prime numbers up to that Integer.
+
+import java.util.Scanner;
+class Printprimes {
+    public static void main(String args[])  {
+        Scanner sc  = new Scanner(System.in);
+        int n, i, j, count = 0;
+        n = sc.nextInt();
+
+        for(i = 2; i <= n; i++) {
+            count = 0;
+            for(j = 2; j <=i/2; j++) {
+                if (i % j == 0) {
+                    count++;
+                }
+            }
+            if(count == 0) {
+                System.out.print(i + " ");
+            }
+        }
+        sc.close();
+    }
+}
+
+
+output:
+
+15
+2 3 5 7 11 13 
+
+----------------------------------------------------
+3)  Write a Java Program that checks whether a given string is a palindrome or
+   not. 
+
+import java.util.Scanner;
+class FindPalindromeStrings {
+    public static boolean isPalindrome(String s) {
+        int n = s.length();
+        for( int i = 0;  i <= n/2; i++) {
+            char ch1 = s.charAt(i);
+            char ch2 = s.charAt(n-i-1);
+            if(ch1 != ch2)
+                return false;
+        }
+
+        return true;
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        String words[] = input.split(" ");
+        for(String word:words) {
+            if(isPalindrome(word)) {
+                System.out.println(word+" is pallindrome");
+            }
+            else
+               System.out.println(word+" is not pallindrome");
+            
+        }
+        sc.close();
+    }
+}
+
+output:
+
+MALAYALAM
+MALAYALAM is pallindrome
+
+----------------------------------------------------
+4) Write a Java Program for sorting a given list of names in ascending order.
+
+public class SortingNamesInArray {
+    public static void main(String[] args) {
+        String[] names = {"Eve", "Alice", "Charlie", "Bob",};
+
+        sortNames(names);
+
+        System.out.println("Sorted names in ascending order:");
+        for (String name : names) {
+            System.out.println(name);
+        }
+    }
+
+    public static void sortNames(String[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j].compareTo(arr[j + 1]) > 0) {
+                    String temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+output:
+Sorted names in ascending order:
+Alice
+Bob
+Charlie
+Eve
+
+
+----------------------------------------------------
+5)Write a Java Program that illustrates how runtime polymorphism is achieved.
+
+class Animal {
+    public void makeSound() {
+        System.out.println("Some generic sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Woof!");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Meow!");
+    }
+}
+
+public class RuntimePolymorphismExample {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog();
+        Animal animal2 = new Cat();
+
+        animal1.makeSound(); // Outputs "Woof!"
+        animal2.makeSound(); // Outputs "Meow!"
+    }
+}
+
+----------------------------------------------------
+6)Write a Java Program to create and demonstrate packages.
+
+package location:-
+
+- Root Directory
+  - com
+    - mycompany
+      - math
+        - Calculator.java
+  - Main.java
+
+
+Calculator.java:-
+// Calculator.java - Inside the package com.mycompany.math
+
+package com.mycompany.math;
+
+public class Calculator {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+}
+
+mainclass:-
+// Main.java - Outside the com.mycompany.math package
+
+import com.mycompany.math.Calculator;
+
+public class Main {
+    public static void main(String[] args) {
+        int num1 = 10;
+        int num2 = 5;
+
+        int sum = Calculator.add(num1, num2);
+        int difference = Calculator.subtract(num1, num2);
+
+        System.out.println("Sum: " + sum);
+        System.out.println("Difference: " + difference);
+    }
+}
+
+
+--------------------------------------------------------------------
+7)Write a Java Program, using String Tokenizer class, which reads a line of
+   integers and then displays each integer and the sum of all integers.
+
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class StringTokenizerExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a line of integers separated by spaces: ");
+        String inputLine = scanner.nextLine();
+
+        StringTokenizer tokenizer = new StringTokenizer(inputLine);
+        int sum = 0;
+        int count = 0;
+        
+        System.out.println("Integers entered:");
+        
+        while (tokenizer.hasMoreTokens()) {
+            String token = tokenizer.nextToken();
+            int num = Integer.parseInt(token);
+            System.out.println(num);
+            sum += num; 
+            count++;    
+        }
+        System.out.println("Sum of all integers: " + sum);
+        System.out.println("Total integers entered: " + count);
+        scanner.close();
+    }
+}
+
+output:
+Enter a line of integers separated by spaces: 4 5 6 3
+Integers entered:
+4
+5
+6
+3
+Sum of all integers: 18
+Total integers entered: 4
+
+--------------------------------------------------------------------------------
+
+8. Write a Java Program that reads on file name form the user then displays
+   information about whether the file exists, whether the file is readable/
+   writable, the type of file and the length of the file in bytes and display the
+   content of the using File Input Stream class.
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class FileInfo {
+    public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        System.out.print("Enter the file name: ");
+        String fileName = scanner.nextLine();
+        File file = new File(fileName);
+
+        if (file.exists()) {
+            System.out.println("File exists.");
+
+            if (file.canRead()) {
+                System.out.println("File is readable.");
+            } else {
+                System.out.println("File is not readable.");
+            }
+
+            if (file.canWrite()) {
+                System.out.println("File is writable.");
+            } else {
+                System.out.println("File is not writable.");
+            }
+
+            if (file.isDirectory()) {
+                System.out.println("File is a directory.");
+            } else if (file.isFile()) {
+                System.out.println("File is a regular file.");
+            }
+
+            System.out.println("File length: " + file.length() + " bytes");
+
+            try (FileInputStream fis = new FileInputStream(file)) {
+                System.out.println("File content:");
+                int data;
+                while ((data = fis.read()) != -1) {
+                    System.out.print((char) data);
+                }
+            } catch (IOException e) {
+                System.out.println("Error reading file: " + e.getMessage());
+            }
+        } else {
+            System.out.println("File does not exist.");
+        }
+        scanner.close();
+    }
+}
+
+
+
+output:
+Enter the filename: test.txt
+File exists: true
+File is readable: true
+File is writable: true
+File type: Regular file
+File length (bytes): 29
+File content:
+This is a test file.
+It contains some text.
+
+------------------------------------------------------------------------------------------
+9. Write a Java Program that displays the number of characters, lines and
+   words in a text/text file.
+
+import java.io.*;
+class FileHandling1
+{
+	public static void main(String args[])throws Exception
+	{   int ch;
+	    int char_count=0,word_count=0,line_count=0;
+        File f1=new File("abc.txt");
+		FileReader fr=new FileReader(f1);
+        FileWriter fw=new FileWriter("copyfile.txt");
+
+		while((ch=fr.read()) != -1)
+		{
+			 if(ch==' ')
+				word_count++;
+			else if(ch=='\n')
+			{
+				line_count++;
+				word_count++;
+			}
+            System.out.print((char)ch);
+			fw.write(ch);
+			char_count++;
+		}
+        System.out.println("No of Characters: "+char_count);
+		System.out.println("No of Words: "+(word_count+1));
+		System.out.println("No of Lines: "+(line_count+1));
+		fr.close();
+		fw.close();
+	}
+}
+
+output:
+No of Characters: 65
+No of Words: 10
+No of Lines: 4
+--------------------------------------------------------------------------------
+10. Write a Java Program demonstrating the life cycle of a thread.
+
+class Thread1 extends Thread
+{
+   public void run()
+	{
+	   System.out.println("T1 State Before call the sleep method: "+Thread.currentThread().getState());
+	   try
+	   {
+		  Thread.sleep(3000);
+	   }
+	   catch(Exception e)
+	   {
+	   }
+	   System.out.println("T1 State after call the Sleep method: "+Thread.currentThread().getState());
+	}
+}
+class MainThread
+{
+	public static void main(String args[])
+	{
+		Thread1 t1=new Thread1();
+		System.out.println("T1 State before call the start method: "+t1.getState());
+		t1.start();
+		System.out.println("T1 State after call the start method: "+t1.getState());
+	    try{
+			t1.join();
+		}catch(Exception e)
+		{
+		}
+		System.out.println("T1 State after call the join method: "+t1.getState());
+	}
+}
+
+Output:
+=======
+D:\2023-24\MCA 2023\Practice\Threading>java MainThread
+T1 State before call the start method: NEW
+T1 State after call the start method: RUNNABLE
+T1 State Before call the sleep method: RUNNABLE
+T1 State after call the Sleep method: RUNNABLE
+T1 State after call the join method: TERMINATED
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
