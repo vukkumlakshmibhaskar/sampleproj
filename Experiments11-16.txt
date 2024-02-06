@@ -1,0 +1,497 @@
+
+Experiment-11:
+Write an Applet that displays the content of a file.
+Source Code:
+Part1: -
+Create the following text file in the same folder in which you want save applet program.
+Aditya.txt: -
+Aditya is the best educational institution in AP.
+
+Part2: -
+Program: - Experiment10.java 
+import java.applet.*; 
+import java.awt.*; 
+import java.io.*;
+/* <applet code="Experiment10.class" height="300" width="500"> </applet> */ 
+public class Experiment10 extends Applet
+{
+	String content = ""; 
+	public void init()
+	{
+		try
+		{
+			char ch;
+			StringBuffer buff = new StringBuffer(""); 
+			FileInputStream fis = new FileInputStream("Aditya.txt"); 
+			while(fis.available()!=0)
+			{
+				ch = (char) fis.read(); 
+				buff.append(ch);
+			}
+			fis.close();
+			content = new String(buff);
+		}
+		catch(FileNotFoundException e)
+		{
+			content = "Cannot find the specified file...";
+		}
+		catch(IOException i)
+		{
+			content = "Cannot read from the file...";
+		}
+	}
+	public void paint(Graphics g)
+	{
+		Font f = new Font("Courier", Font.PLAIN, 30); 
+		g.setFont(f);
+		g.drawString(content,50,50);
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------
+Experiment-12:
+Write a Java Program that works as a simple calculator. Use a grid layout to arrange buttons for the digits and for the +-*?% operations. Add a text field to display the result.
+Source Code:
+
+import java.awt.*; 
+import java.awt.event.*; 
+import java.applet.*;
+/*<applet code="Experiment11.class" width=300 height=300></applet>*/ 
+public class Experiment11 extends Applet implements ActionListener
+{
+	String msg=" "; 
+	int v1, v2, result; 
+	TextField t1;
+	Button b[] = new Button[10];
+	Button add,sub,mul,div,clear,mod,EQ,BS,dot; 
+	char OP;
+
+	public void init()
+	{
+		Color k=new Color(120,89,90); 
+		setBackground(k);
+		t1 = new TextField(50);
+		GridLayout gl = new GridLayout(4,5); 
+		setLayout(gl);
+		for(int i=0 ; i<10 ; i++)
+		{
+			b[i]=new Button("" + i);
+		}
+		add=new Button("+"); 
+		sub=new Button("-"); 
+		mul=new Button("X"); 
+		div=new Button("/"); 
+		mod=new Button("%"); 
+		clear=new Button("clear"); 
+		EQ=new Button("="); 
+		BS=new Button("Back Space");
+		dot=new Button(".");
+		t1.addActionListener(this);
+		add(t1);
+		add(BS);
+		for(int i=0;i<10;i++)
+		{
+			add(b[i]);
+		}
+		add(add);
+		add(sub);
+		add(mul);
+		add(div);
+		add(mod); 
+		add(clear);
+		add(dot);
+		add(EQ);
+		for(int i=0;i<10;i++)
+		{
+			b[i].addActionListener(this);
+		}
+		add.addActionListener(this); 
+		sub.addActionListener(this); 
+		mul.addActionListener(this); 
+		div.addActionListener(this); 
+		mod.addActionListener(this); 
+		clear.addActionListener(this); 
+		EQ.addActionListener(this);
+		BS.addActionListener(this);
+	}
+
+	public void actionPerformed(ActionEvent ae)
+	{
+		String str = ae.getActionCommand(); 
+		char ch = str.charAt(0);
+		if ( Character.isDigit(ch)) 
+			t1.setText(t1.getText()+str);
+		else if(str.equals("+"))
+		{
+			v1=Integer.parseInt(t1.getText()); OP='+';
+			t1.setText("");
+		}
+		else if(str.equals("-"))
+		{
+			v1=Integer.parseInt(t1.getText()); OP='-';
+			t1.setText("");
+		}
+		else if(str.equals("X"))
+		{
+			v1=Integer.parseInt(t1.getText()); OP='*';
+			t1.setText("");
+		}
+		else if(str.equals("/"))
+		{
+			v1=Integer.parseInt(t1.getText());
+			OP='/';
+			t1.setText("");
+		}
+		else if(str.equals("%"))
+		{
+			v1=Integer.parseInt(t1.getText()); 
+			OP='%';
+			t1.setText("");
+		}
+		else if(str.equals("Back Space"))
+		{
+			String s=t1.getText();
+			s=s.substring(0,s.length()-1);
+			t1.setText(s);
+		}
+		if(str.equals("="))
+		{
+			v2=Integer.parseInt(t1.getText()); 
+			if(OP=='+')
+				result=v1+v2; 
+			else if(OP=='-')
+				result=v1-v2; 
+			else if(OP=='*') 
+				result=v1*v2;
+			else if(OP=='/') 
+				result=v1/v2;
+			else if(OP=='%') 
+				result=v1%v2;
+			t1.setText(""+result);
+		}
+		if(str.equals("clear"))
+		{
+			t1.setText("");
+		}
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Experiment13:
+Write a Java Program for handling mouse events.
+Source Code:
+
+import java.awt.*; 
+import java.awt.event.*; 
+import java.applet.*;
+/* <applet code="Experiment12.class" width=300 height=100> </applet> */
+public class Experiment12 extends Applet implements MouseListener, MouseMotionListener
+{
+	String msg = "";
+	int mouseX = 0, mouseY = 0; // coordinates of mouse
+	public void init()
+	{
+		addMouseListener(this); 
+		addMouseMotionListener(this);
+	}
+	public void mouseClicked(MouseEvent me)
+	{
+		mouseX = 0;
+		mouseY = 10;
+		msg = "Mouse clicked."; 
+		repaint();
+	}
+	public void mouseEntered(MouseEvent me)
+	{
+		mouseX = 0;
+		mouseY = 10;
+		msg = "Mouse entered."; 
+		repaint();
+	}
+
+	public void mouseExited(MouseEvent me)
+	{
+		mouseX = 0;
+		mouseY = 10;
+		msg = "Mouse exited."; 
+		repaint();
+	}
+	public void mousePressed(MouseEvent me)
+	{
+		mouseX = me.getX(); 
+		mouseY = me.getY(); 
+		msg = "Pressed"; 
+		repaint();
+	}
+	public void mouseReleased(MouseEvent me)
+	{
+		mouseX = me.getX(); 
+		mouseY = me.getY(); 
+		msg = "Released"; 
+		repaint();
+	}
+	public void mouseDragged(MouseEvent me)
+	{
+		mouseX = me.getX(); 
+		mouseY = me.getY(); 
+		msg = "*";
+		showStatus("Dragging mouse at " + mouseX + ", " + mouseY); 
+		repaint();
+	}
+	public void mouseMoved(MouseEvent me)
+	{
+		showStatus("Moving mouse at " + me.getX() + ", " + me.getY());
+	}
+	public void paint(Graphics g)
+	{
+		g.drawString(msg, mouseX, mouseY);
+	}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Experiment-14:
+
+Write a Java Program that lets users create Pie charts. Design your own user interface (with Swings & AWT).
+Source Code:
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+class Slice 
+{
+   double value;
+   Color color;
+   public Slice(double value, Color color) 
+   {  
+      this.value = value;
+      this.color = color;
+   }
+}
+class MyComponent extends JComponent 
+{
+   Slice[] slices = { 
+      new Slice(5, Color.black), new Slice(33, Color.green), new Slice(20, Color.yellow), new Slice(15, Color.red) 
+   };
+   MyComponent() {}
+   public void paint(Graphics g) 
+   {
+      drawPie((Graphics2D) g, getBounds(), slices);
+   }
+
+   void drawPie(Graphics2D g, Rectangle area, Slice[] slices) 
+   {
+      double total = 0.0D;   
+      for (int i = 0; i < slices.length; i++) {
+         total += slices[i].value;
+      }
+      double curValue = 0.0D;
+      int startAngle = 0;
+      for (int i = 0; i < slices.length; i++) {
+         startAngle = (int) (curValue * 360 / total);
+         int arcAngle = (int) (slices[i].value * 360 / total);
+         g.setColor(slices[i].color);
+         g.fillArc(area.x, area.y, area.width, area.height, startAngle, arcAngle);
+         curValue += slices[i].value;
+      }
+   }
+}
+public class Experiment14 {
+   public static void main(String[] argv) {
+      JFrame frame = new JFrame();
+      frame.getContentPane().add(new MyComponent());
+      frame.setSize(300, 300);
+      frame.setVisible(true);
+   }
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Experiment-15:
+
+Write a Java Program to implement a Queue, using user defined Exception Handling (also make use of throw, throws).
+Source Code:
+import java.util.*;
+import java.lang.*;
+class QueueError extends Exception
+{
+	public QueueError(String msg)
+	{
+		super(msg);
+	}
+}
+class Que
+{
+	private int size;
+	private int front = -1;
+	private int rear = -1;
+	private Integer[] queArr;
+	public Que(int size)
+	{
+		this.size = size;
+		queArr = new Integer[size];
+	}
+	public void insert(int item) throws Exception,QueueError
+	{
+		try
+		{
+			if(rear == size-1)
+			{
+				throw new QueueError("Queue Overflow");
+			}
+			else if(front==-1)
+			{
+				rear++;
+				queArr[rear] = item;
+				front = rear;
+			}
+			else
+			{
+				rear++;
+				queArr[rear] = item;
+			}
+		}
+		catch(QueueError qe)
+		{
+			qe.printStackTrace();
+		}
+	}
+	public void delete() throws Exception,QueueError
+	{
+		try
+		{
+			if(front == -1)
+			{
+				throw new QueueError("Queue Underflow");
+			}
+			else if(front==rear)
+			{
+				System.out.println("\nRemoved "+queArr[front]+" from Queue");
+				queArr[front] = null;
+				front--;
+				rear--;
+			}
+			else
+			{
+				System.out.println("\nRemoved "+queArr[front]+" from Queue");
+				queArr[front] = null;
+				for(int i=front+1;i<=rear;i++)
+				{
+					queArr[i-1]=queArr[i];
+				}
+				rear--;
+			}
+		}
+		catch(QueueError qe)
+		{
+			qe.printStackTrace();
+		}
+	}
+	public void display() throws Exception,QueueError
+	{
+		try
+		{
+			if(front==-1)
+				throw new QueueError("Queue is Empty");
+			else
+			{
+				System.out.print("\nQueue is: ");
+				for(int i=front;i<=rear;i++)
+				{
+					System.out.print(queArr[i]+"\t");
+				}
+				System.out.println();
+			}
+		}
+		catch(QueueError qe)
+		{
+			qe.printStackTrace();
+		}
+	}
+}
+class Experiment15
+{
+	public static void main(String[] args) throws Exception,QueueError
+	{
+		System.out.println("\n\n\tQueue test using Array\n\n");
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter size of Queue array: ");
+		int size = scan.nextInt();
+		Que que = new Que(size);
+		char ch;
+		try
+		{
+			while(true)
+			{
+				System.out.println("\n\n\tQueue operations \n");
+				System.out.println("1. Insert");
+				System.out.println("2. Delete");
+				System.out.println("3. Display");
+				System.out.println("4. Exit\n");
+				System.out.print("Enter your choice: ");
+				int choice = scan.nextInt();
+				switch(choice)
+				{
+					case 1: System.out.print("\nEnter integer number to insert: ");
+							que.insert(scan.nextInt());
+							break;
+					case 2:que.delete();
+							break;
+					case 3:que.display();
+							break;
+					case 4:return ;
+				}
+			}
+		}
+		catch(QueueError qe)
+		{
+			qe.printStackTrace();
+		}
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Experiment-16:
+Write Java Program to demonstrating thread synchronization in multithreading.
+Source Code:
+import java.lang.*; 
+class College
+{
+	public synchronized void classRoom (String fn)
+	{
+		for (int i=1 ; i<10 ; i++)
+		{
+			System.out.println(i + " class taken by " + fn); 
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e){}
+		}
+		System.out.println(fn + " task completed\n");
+	}
+}
+class MyThread extends Thread
+{
+	College c;
+	String faculty;
+	MyThread(College obj, String name)
+	{
+		c=obj; 
+		faculty=name;
+	}
+	public void run()
+	{
+		c.classRoom(faculty);
+	}
+}
+class Experiment16
+{
+	public static void main(String args[])
+	{
+		College x = new College();
+		MyThread t1 = new MyThread(x,"Babuji Sir"); 
+		MyThread t2 = new MyThread(x,"Kumar Sir"); 
+		MyThread t3 = new MyThread(x,"Pradeep Sir"); 
+		t1.start();
+		t2.start();
+		t3.start();
+	}
+}
+
