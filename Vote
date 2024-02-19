@@ -1,0 +1,51 @@
+*User Defined Exception*
+class NotEligibleVoter extends Exception
+{
+   public NotEligibleVoter()
+   {
+     super();
+   }
+   public NotEligibleVoter(String msg)
+   {
+     super(msg);
+   }
+}
+class Person
+{
+   int age;
+   public Person(int age)
+   {
+      this.age=age;
+   }
+   public void CheckEligibility()
+   {
+       try
+	   {
+	      if(age<18)
+		     throw new InValidVoterException("Minimum age for voting eligibility is: 18");
+          System.out.pritnln("Congratulation! You are Eligible for Vote");			 
+	   }
+	   catch(InValidVoterException ie)
+	   {
+	     System.out.println(ie.getMessage());
+	   }
+	   catch(Exception e)
+	   {
+	     System.out.println("Default Handling");
+	   }
+   }
+   public static void main(String args[])
+   {
+      Person p1=new Person(17);
+	  p1.CheckEligibility();
+	  
+   }
+}
+Output:
+D:\2023-24\MCA 2023\Practice>java Person
+Minimum age for voting eligibility is: 18
+
+D:\2023-24\MCA 2023\Practice>javac Person.java
+
+D:\2023-24\MCA 2023\Practice>java Person
+Congratulation! You are Eligible for Vote
